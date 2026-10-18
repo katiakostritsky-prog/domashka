@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест: Переход деепричастий в наречия</title>
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --primary-light: #edf2f7;
+            --success: #2ecc71;
+            --success-light: #e8f8f0;
+            --error: #e74c3c;
+            --error-light: #fdedec;
+            --text: #2d3748;
+            --border: #cbd5e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f7fafc;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+
+        /* Блок теории */
+        .theory-section {
+            background-color: var(--primary-light);
+            border-left: 5px solid var(--primary);
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 40px;
+        }
+
+        .theory-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .theory-table th, .theory-table td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            vertical-align: top;
+        }
+
+        .theory-table th {
+            background-color: #e2e8f0;
+        }
+
+        .examples-list {
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        /* Задания */
+        .question-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .question-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .instruction {
+            font-style: italic;
+            color: #718096;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        /* Стили для чекбоксов (Задание 1) */
+        .checkbox-group {
+            display: grid;
+            gap: 10px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .checkbox-label:hover {
+            background-color: #f7fafc;
+        }
+
+        .checkbox-label input {
+            margin-top: 5px;
+            margin-right: 12px;
+        }
+
+        /* Стили для полей ввода (Задания 2-5) */
+        .input-sub-question {
+            margin-bottom: 15px;
+        }
+
+        .input-sub-question label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+        }
+
+        /* Подсветка результатов */
+        .correct-card {
+            border-color: var(--success) !important;
+            background-color: var(--success-light) !important;
+        }
+
+        .incorrect-card {
+            border-color: var(--error) !important;
+            background-color: var(--error-light) !important;
+        }
+
+        .feedback-message {
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .text-success { color: #27ae60; }
+        .text-error { color: #c0392b; }
+
+        .correct-answer-view {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #4a5568;
+            background: #edf2f7;
+            padding: 8px;
+            border-radius: 4px;
+            border-left: 3px solid var(--primary);
+        }
+
+        /* Кнопка отправки */
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 30px;
+        }
+
+        .btn-submit:hover {
+            background-color: #3b5984;
+        }
+
+        #result-box {
+            display: none;
+            text-align: center;
+            padding: 25px;
+            background-color: var(--primary-light);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Переход деепричастий в наречия</h1>
+
+    <!-- ТЕОРЕТИЧЕСКИЙ БЛОК -->
+    <div class="theory-section">
+        <h2>Теоретический блок</h2>
+        <p>Деепричастие, поясняя глагол, сближается с наречием и нередко переходит в наречие.</p>
+        <ul>
+            <li><i>В ущелье <b>лёжа</b>, Уж долго думал о смерти птицы, о страсти к небу (М. Горький).</i></li>
+            <li><i><b>Лёжа</b> хлеба не добудешь (пословица).</i></li>
+        </ul>
+        <p>В первом предложении <b>лёжа</b> — деепричастие, оно имеет зависимое слово: <i>лёжа (где?) в ущелье</i>, составляет с ним деепричастный оборот. Деепричастие можно заменить глаголом: <i>думал, когда лежал</i>. Во втором предложении <b>лёжа</b> — наречие, оно не имеет глагольных признаков, выражает просто обстоятельство: <i>не добудешь (при каком условии?) лёжа, без усилий</i>. Его нельзя заменить глаголом, зато можно заменить наречием.</p>
+
+        <h3>Отличие деепричастий от наречий</h3>
+        <table class="theory-table">
+            <thead>
+                <tr>
+                    <th>Деепричастие</th>
+                    <th>Наречие</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>обозначает добавочное действие;</li>
+                            <li>легко заменяется глаголом-сказуемым, от которого образуется: <i>Пошумев, река успокоилась (пошумела и успокоилась)</i>;</li>
+                            <li>бывает совершенного и несовершенного видов;</li>
+                            <li>стоит до или после сказуемого (но, как правило, до него).</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>обозначает признак действия;</li>
+                            <li>легко заменяется другим наречием и не заменяется однородным сказуемым: <i>Мы ехали не останавливаясь по белой равнине (не останавливаясь = быстро, без остановки)</i>;</li>
+                            <li>в наречие переходят только деепричастия несовершенного вида;</li>
+                            <li>стоит после глагола-сказуемого.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Запомните следующие словосочетания (деепричастие перешло в наречие):</h3>
+        <div class="examples-list">
+            пишет <b>сидя / стоя</b>; читает <b>лёжа</b>; говорит <b>захлебываясь</b> (непонятно); ответил <b>не думая</b> (быстро); рассказывал <b>не спеша</b> (медленно); стоял <b>подбоченясь</b> (вызывающе), стоял <b>вытянувшись</b> (прямо); отвечал <b>нехотя</b> (вяло), живёт <b>играючи</b> (легко, беззаботно); говорят <b>не торопясь</b> (обстоятельно); говорит <b>не смолкая</b> (безостановочно); похлопал <b>любя</b> (доброжелательно).
+        </div>
+
+        <h3>Устойчивые словосочетания (деепричастия закрепились в роли наречий):</h3>
+        <p><i>немного погодя, откровенно говоря, судя по всему, собственно говоря, полагая важным, не считая нужным, попутно отмечая.</i></p>
+    </div>
+
+    <!-- ПРАКТИЧЕСКИЕ ЗАДАНИЯ -->
+    <h2>Практические задания</h2>
+    <form id="quiz-form" onsubmit="event.preventDefault(); checkQuiz();">
+        
+                <!-- ЗАДАНИЕ 1 -->
+        <div class="question-card" id="q1-card">
+            <div class="question-title">Задание 1. Выделите все предложения, в которых выделенные слова утратили значение глагольности и способность управлять существительным.</div>
+            <div class="instruction">Подумайте и скажите, сохранили ли выделенные слова значение глагольности и способность управлять существительными (выберите нужные варианты).</div>
+            <div class="checkbox-group">
+                <label class="checkbox-label"><input type="checkbox" name="q1" value="а"> а) Поезд шел НЕ ОСТАНАВЛИВАЯСЬ.</label>
+                <label class="checkbox-label"><input type="checkbox" name="q1" value="б"> б) Она говорила об этом УЛЫБАЯСЬ.</label>
+                <label class="checkbox-label"><input type="checkbox" name="q1" value="в"> в) Он говорил ЗАПИНАЯСЬ.</label>
+                <label class="checkbox-label"><input type="checkbox" name="q1" value="г"> г) Они шли НЕ ТОРОПЯСЬ.</label>
+                <label class="checkbox-label"><input type="checkbox" name="q1" value="д"> д) Он вбежал во двор КРИЧА.</label>
+                <label class="checkbox-label"><input type="checkbox" name="q1" value="е"> е) Шли вперед НЕ ОГЛЯДЫВАЯСЬ.</label>
+            </div>
+            <div class="feedback-message" id="q1-feedback"></div>
+        </div>
+		<!-- ЗАДАНИЕ 2 -->
+        <div class="question-card" id="q2-card">
+            <div class="question-title">Задание 2. Замените в этих предложениях выделенные слова наречиями или сочетаниями существительных с предлогом.</div>
+            <div class="instruction">Принимаются также синонимичные выражения. Регистр букв значения не имеет.</div>
+            
+            <div class="input-sub-question">
+                <label>а) Поезд шел НЕ ОСТАНАВЛИВАЯСЬ.</label>
+                <input type="text" class="text-input" id="q2_a" placeholder="Ваш ответ...">
+                <div class="correct-answer-view" id="q2_a_ans" style="display:none;">Эталон: Безостановочно / без остановки</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>б) Она говорила об этом УЛЫБАЯСЬ.</label>
+                <input type="text" class="text-input" id="q2_b" placeholder="Ваш ответ...">
+                <div class="correct-answer-view" id="q2_b_ans" style="display:none;">Эталон: С улыбкой</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>в) Он говорил ЗАПИНАЯСЬ.</label>
+                <input type="text" class="text-input" id="q2_c" placeholder="Ваш ответ...">
+                <div class="correct-answer-view" id="q2_c_ans" style="display:none;">Эталон: С запинкой / прерывисто</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>г) Они шли НЕ ТОРОПЯСЬ.</label>
+                <input type="text" class="text-input" id="q2_d" placeholder="Ваш ответ...">
+                <div class="correct-answer-view" id="q2_d_ans" style="display:none;">Эталон: Неторопливо / медленно</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>д) Он вбежал во двор КРИЧА.</label>
+                <input type="text" class="text-input" id="q2_e" placeholder="Ваш ответ...">
+                <div class="correct-answer-view" id="q2_e_ans" style="display:none;">Эталон: С криком / крича</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>е) Шли вперед НЕ ОГЛЯДЫВАЯСЬ.</label>
+                <input type="text" class="text-input" id="q2_f" placeholder="Ваш ответ...">
+                <div class="correct-answer-view" id="q2_f_ans" style="display:none;">Эталон: Без оглядки / безоглядно</div>
+            </div>
+            
+            <div class="feedback-message" id="q2-feedback"></div>
+        </div>
+	        <!-- ЗАДАНИЕ 3 -->
+        <div class="question-card" id="q3-card">
+            <div class="question-title">Задание 3. Перепишите предложения, расставив знаки препинания там, где это необходимо.</div>
+            <div class="instruction">Скопируйте предложение в поле и расставьте запятые. Если запятые не нужны, оставьте предложение без изменений.</div>
+            
+            <div class="input-sub-question">
+                <label>1. Слушал не перебивая.</label>
+                <input type="text" class="text-input" id="q3_1">
+                <div class="correct-answer-view" id="q3_1_ans" style="display:none;">Правильно: Слушал не перебивая.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>2. Стала всматриваться не узнавая.</label>
+                <input type="text" class="text-input" id="q3_2">
+                <div class="correct-answer-view" id="q3_2_ans" style="display:none;">Правильно: Стала всматриваться не узнавая.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>3. Делал перерывы уставая.</label>
+                <input type="text" class="text-input" id="q3_3">
+                <div class="correct-answer-view" id="q3_3_ans" style="display:none;">Правильно: Делал перерывы уставая.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>4. Отказавшись он упустит эту последнюю возможность.</label>
+                <input type="text" class="text-input" id="q3_4">
+                <div class="correct-answer-view" id="q3_4_ans" style="display:none;">Правильно: Отказавшись, он упустит эту последнюю возможность.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>5. Обомлев стояла она неподвижно в дверях.</label>
+                <input type="text" class="text-input" id="q3_5">
+                <div class="correct-answer-view" id="q3_5_ans" style="display:none;">Правильно: Обомлев, стояла она неподвижно в дверях.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>6. Не дозвонившись зашел ко мне на дом.</label>
+                <input type="text" class="text-input" id="q3_6">
+                <div class="correct-answer-view" id="q3_6_ans" style="display:none;">Правильно: Не дозвонившись, зашел ко мне на дом.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>7. Возмутившись он отказался отвечать.</label>
+                <input type="text" class="text-input" id="q3_7">
+                <div class="correct-answer-view" id="q3_7_ans" style="display:none;">Правильно: Возмутившись, он отказался отвечать.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>8. Утомившись они делали остановки на пути.</label>
+                <input type="text" class="text-input" id="q3_8">
+                <div class="correct-answer-view" id="q3_8_ans" style="display:none;">Правильно: Утомившись, они делали остановки на пути.</div>
+            </div>
+            
+            <div class="feedback-message" id="q3-feedback"></div>
+        </div>
+	        <!-- ЗАДАНИЕ 4 -->
+        <div class="question-card" id="q4-card">
+            <div class="question-title">Задание 4. Перепишите предложения, расставив знаки препинания там, где это необходимо.</div>
+            
+            <div class="input-sub-question">
+                <label>1. Повинуясь он опустился в кресло.</label>
+                <input type="text" class="text-input" id="q4_1">
+                <div class="correct-answer-view" id="q4_1_ans" style="display:none;">Правильно: Повинуясь, он опустился в кресло.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>2. Девочка смотрела не мигая за окно.</label>
+                <input type="text" class="text-input" id="q4_2">
+                <div class="correct-answer-view" id="q4_2_ans" style="display:none;">Правильно: Девочка смотрела не мигая за окно.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>3. Только теперь он мечтал лёжа.</label>
+                <input type="text" class="text-input" id="q4_3">
+                <div class="correct-answer-view" id="q4_3_ans" style="display:none;">Правильно: Только теперь он мечтал лёжа.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>4. В хате он молча скучал целые сутки.</label>
+                <input type="text" class="text-input" id="q4_4">
+                <div class="correct-answer-view" id="q4_4_ans" style="display:none;">Правильно: В хате он молча скучал целые сутки.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>5. Насытившись ребята продолжили работу.</label>
+                <input type="text" class="text-input" id="q4_5">
+                <div class="correct-answer-view" id="q4_5_ans" style="display:none;">Правильно: Насытившись, ребята продолжили работу.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>6. Страшная туча надвигалась не спеша.</label>
+                <input type="text" class="text-input" id="q4_6">
+                <div class="correct-answer-view" id="q4_6_ans" style="display:none;">Правильно: Страшная туча надвигалась не спеша.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>7. Я жила припеваючи.</label>
+                <input type="text" class="text-input" id="q4_7">
+                <div class="correct-answer-view" id="q4_7_ans" style="display:none;">Правильно: Я жила припеваючи.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>8. Спят журавли обычно стоя.</label>
+                <input type="text" class="text-input" id="q4_8">
+                <div class="correct-answer-view" id="q4_8_ans" style="display:none;">Правильно: Спят журавли обычно стоя.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>9. Взлетая жаворонок трепетал крылышками.</label>
+                <input type="text" class="text-input" id="q4_9">
+                <div class="correct-answer-view" id="q4_9_ans" style="display:none;">Правильно: Взлетая, жаворонок трепетал крылышками.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>10. Прилетев гуси шумно опускаются на воду.</label>
+                <input type="text" class="text-input" id="q4_10">
+                <div class="correct-answer-view" id="q4_10_ans" style="display:none;">Правильно: Прилетев, гуси шумно опускаются на воду.</div>
+            </div>
+            
+            <div class="feedback-message" id="q4-feedback"></div>
+        </div>
+	        <!-- ЗАДАНИЕ 5 -->
+        <div class="question-card" id="q5-card">
+            <div class="question-title">Задание 5. Перепишите предложения, расставив знаки препинания там, где это необходимо. Не забывайте про фразеологизмы!</div>
+            
+            <div class="input-sub-question">
+                <label>1. И день и ночь спешу к вам голову сломя.</label>
+                <input type="text" class="text-input" id="q5_1">
+                <div class="correct-answer-view" id="q5_1_ans" style="display:none;">Правильно: И день, и ночь спешу к вам голову сломя.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>2. Малыш испугавшись громко расплакался.</label>
+                <input type="text" class="text-input" id="q5_2">
+                <div class="correct-answer-view" id="q5_2_ans" style="display:none;">Правильно: Малыш, испугавшись, громко расплакался.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>3. Это упражнение делают стоя на вытянутых ногах.</label>
+                <input type="text" class="text-input" id="q5_3">
+                <div class="correct-answer-view" id="q5_3_ans" style="display:none;">Правильно: Это упражнение делают стоя на вытянутых ногах.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>4. Татьяна любит не шутя.</label>
+                <input type="text" class="text-input" id="q5_4">
+                <div class="correct-answer-view" id="q5_4_ans" style="display:none;">Правильно: Татьяна любит не шутя.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>5. Волнуясь он говорил торопливо и непонятно.</label>
+                <input type="text" class="text-input" id="q5_5">
+                <div class="correct-answer-view" id="q5_5_ans" style="display:none;">Правильно: Волнуясь, он говорил торопливо и непонятно.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>6. Читать лёжа вредно.</label>
+                <input type="text" class="text-input" id="q5_6">
+                <div class="correct-answer-view" id="q5_6_ans" style="display:none;">Правильно: Читать лёжа вредно.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>7. Я проснулся и умывшись сел завтракать.</label>
+                <input type="text" class="text-input" id="q5_7">
+                <div class="correct-answer-view" id="q5_7_ans" style="display:none;">Правильно: Я проснулся и, умывшись, сел завтракать.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>8. Туманы клубясь и извиваясь сползали по морщинам соседних скал.</label>
+                <input type="text" class="text-input" id="q5_8">
+                <div class="correct-answer-view" id="q5_8_ans" style="display:none;">Правильно: Туманы, клубясь и извиваясь, сползали по морщинам соседних скал.</div>
+            </div>
+            
+            <div class="input-sub-question">
+                <label>9. Отец работал засучив рукава.</label>
+                <input type="text" class="text-input" id="q5_9">
+                <div class="correct-answer-view" id="q5_9_ans" style="display:none;">Правильно: Отец работал засучив рукава.</div>
+            </div>
+            
+            <div class="feedback-message" id="q5-feedback"></div>
+        </div>
+	        <!-- КНОПКА ОТПРАВКИ ТЕСТА -->
+        <button type="submit" class="btn-submit">Проверить тест</button>
+    </form>
+
+    <!-- БЛОК ДЛЯ ВЫВОДА ОЦЕНКИ -->
+    <div id="result-box"></div>
+</div>
+
+<!-- ЛОГИКА АВТОМАТИЧЕСКОЙ ПРОВЕРКИ (JAVASCRIPT) -->
+<script>
+        function cleanText(text) {
+        if (!text) return '';
+        let t = text.trim().toLowerCase().replace(/\s+/g, ' ');
+        // Очищаем от точек и знаков на конце без использования капризных символов
+        while (t.endsWith('.') || t.endsWith('!') || t.endsWith('?')) {
+            t = t.slice(0, -1).trim();
+        }
+        return t;
+    }
+
+    function checkQuiz() {
+        let totalCorrectInputs = 0;
+        let totalMaxInputs = 0;
+        let reportData = [];
+
+        // === ПРОВЕРКА ЗАДАНИЯ 1 ===
+        const q1Checkboxes = document.querySelectorAll('input[name="q1"]:checked');
+        const q1Values = Array.from(q1Checkboxes).map(cb => cb.value);
+        const q1Card = document.getElementById('q1-card');
+        const q1Feedback = document.getElementById('q1-feedback');
+        
+        let q1Score = 0;
+        if (q1Values.length === 6) {
+            q1Card.className = "question-card correct-card";
+            q1Feedback.className = "feedback-message text-success";
+            q1Feedback.innerText = "Правильно! Все предложения выбраны верно.";
+            q1Score = 1;
+        } else {
+            q1Card.className = "question-card incorrect-card";
+            q1Feedback.className = "feedback-message text-error";
+            q1Feedback.innerText = `Неверно. Должны быть выбраны все варианты (а, б, в, г, д, е). Вы выбрали ${q1Values.length} из 6.`;
+        }
+        reportData.push(`• Задание 1 (выбор предложений): ${q1Score} из 1 балла (${q1Score * 100}%)`);
+        totalCorrectInputs += q1Score;
+        totalMaxInputs += 1;
+
+        // === ПРОВЕРКА ЗАДАНИЯ 2 ===
+        const q2Answers = {
+            a: ['безостановочно', 'без остановки', 'без остановок'],
+            b: ['с улыбкой', 'улыбаясь'],
+            c: ['с запинкой', 'прерывисто', 'с запинками'],
+            d: ['неторопливо', 'медленно', 'не спеша'],
+            e: ['с криком', 'крича', 'с криками'],
+            f: ['без оглядки', 'безоглядно']
+        };
+
+        let q2CorrectCount = 0;
+        for (let key in q2Answers) {
+            let userAns = cleanText(document.getElementById(`q2_${key}`).value);
+            let isCorrect = q2Answers[key].some(ans => cleanText(ans) === userAns);
+            document.getElementById(`q2_${key}_ans`).style.display = 'block';
+            
+            if (isCorrect) {
+                q2CorrectCount++;
+                document.getElementById(`q2_${key}`).style.borderColor = 'var(--success)';
+            } else {
+                document.getElementById(`q2_${key}`).style.borderColor = 'var(--error)';
+            }
+        }
+        
+        const q2Card = document.getElementById('q2-card');
+        const q2Feedback = document.getElementById('q2-feedback');
+        if (q2CorrectCount === 6) {
+            q2Card.className = "question-card correct-card";
+            q2Feedback.className = "feedback-message text-success";
+            q2Feedback.innerText = "Правильно! Все замены выполнены верно.";
+        } else {
+            q2Card.className = "question-card incorrect-card";
+            q2Feedback.className = "feedback-message text-error";
+            q2Feedback.innerText = `Выполнено верно: ${q2CorrectCount} из 6. Ниже показаны эталонные варианты ответов.`;
+        }
+        let q2Percent = Math.round((q2CorrectCount / 6) * 100);
+        reportData.push(`• Задание 2 (подбор наречий): ${q2CorrectCount} из 6 ответов (${q2Percent}%)`);
+        totalCorrectInputs += q2CorrectCount;
+        totalMaxInputs += 6;
+        // === ПРОВЕРКА ЗАДАНИЯ 3 ===
+        const q3Answers = [
+            "слушал не перебивая",
+            "стала всматриваться не узнавая",
+            "делал перерывы уставая",
+            "отказавшись, он упустит эту последнюю возможность",
+            "обомлев, стояла она неподвижно в дверях",
+            "не дозвонившись, зашел ко мне на дом",
+            "возмутившись, он отказался отвечать",
+            "утомившись, они делали остановки на пути"
+        ];
+        let q3CorrectCount = 0;
+        for(let i = 1; i <= 8; i++) {
+            let userAns = cleanText(document.getElementById(`q3_${i}`).value);
+            let targetAns = cleanText(q3Answers[i-1]);
+            document.getElementById(`q3_${i}_ans`).style.display = 'block';
+
+            if(userAns === targetAns) {
+                q3CorrectCount++;
+                document.getElementById(`q3_${i}`).style.borderColor = 'var(--success)';
+            } else {
+                document.getElementById(`q3_${i}`).style.borderColor = 'var(--error)';
+            }
+        }
+        const q3Card = document.getElementById('q3-card');
+        const q3Feedback = document.getElementById('q3-feedback');
+        if (q3CorrectCount === 8) {
+            q3Card.className = "question-card correct-card";
+            q3Feedback.className = "feedback-message text-success";
+            q3Feedback.innerText = "Правильно! Пунктуация расставлена идеально.";
+        } else {
+            q3Card.className = "question-card incorrect-card";
+            q3Feedback.className = "feedback-message text-error";
+            q3Feedback.innerText = `Верно оформлено предложений: ${q3CorrectCount} из 8. Проверьте места с запятыми.`;
+        }
+        let q3Percent = Math.round((q3CorrectCount / 8) * 100);
+        reportData.push(`• Задание 3 (пунктуация, блок 1): ${q3CorrectCount} из 8 ответов (${q3Percent}%)`);
+        totalCorrectInputs += q3CorrectCount;
+        totalMaxInputs += 8;
+
+        // === ПРОВЕРКА ЗАДАНИЯ 4 ===
+        const q4Answers = [
+            "повинуясь, он опустился в кресло",
+            "девочка смотрела не мигая за окно",
+            "только теперь он мечтал лёжа",
+            "в хате он молча скучал целые сутки",
+            "насытившись, ребята продолжили работу",
+            "страшная туча надвигалась не спеша",
+            "я жила припеваючи",
+            "спят журавли обычно стоя",
+            "взлетая, жаворонок трепетал крылышками",
+            "прилетев, гуси шумно опускаются на воду"
+        ];
+        let q4CorrectCount = 0;
+        for(let i = 1; i <= 10; i++) {
+            let userAns = cleanText(document.getElementById(`q4_${i}`).value);
+            let targetAns = cleanText(q4Answers[i-1]);
+            document.getElementById(`q4_${i}_ans`).style.display = 'block';
+
+            if(userAns === targetAns) {
+                q4CorrectCount++;
+                document.getElementById(`q4_${i}`).style.borderColor = 'var(--success)';
+            } else {
+                document.getElementById(`q4_${i}`).style.borderColor = 'var(--error)';
+            }
+        }
+        const q4Card = document.getElementById('q4-card');
+        const q4Feedback = document.getElementById('q4-feedback');
+        if (q4CorrectCount === 10) {
+            q4Card.className = "question-card correct-card";
+            q4Feedback.className = "feedback-message text-success";
+            q4Feedback.innerText = "Правильно! Все 10 предложений разобраны верно.";
+        } else {
+            q4Card.className = "question-card incorrect-card";
+            q4Feedback.className = "feedback-message text-error";
+            q4Feedback.innerText = `Верно оформлено предложений: ${q4CorrectCount} из 10. Посмотрите подсказки.`;
+        }
+        let q4Percent = Math.round((q4CorrectCount / 10) * 100);
+        reportData.push(`• Задание 4 (пунктуация, блок 2): ${q4CorrectCount} из 10 ответов (${q4Percent}%)`);
+        totalCorrectInputs += q4CorrectCount;
+        totalMaxInputs += 10;
+        // === ПРОВЕРКА ЗАДАНИЯ 5 ===
+        const q5Answers = [
+            "и день, и ночь спешу к вам голову сломя",
+            "малыш, испугавшись, громко расплакался",
+            "это упражнение делают стоя на вытянутых ногах",
+            "татьяна любит не шутя",
+            "волнуясь, он говорил торопливо и непонятно",
+            "читать лёжа вредно",
+            "я проснулся и, умывшись, сел завтракать",
+            "туманы, клубясь и извиваясь, сползали по морщинам соседних скал",
+            "отец работал засучив рукава"
+        ];
+        let q5CorrectCount = 0;
+        for(let i = 1; i <= 9; i++) {
+            let userAns = cleanText(document.getElementById(`q5_${i}`).value);
+            let targetAns = cleanText(q5Answers[i-1]);
+            document.getElementById(`q5_${i}_ans`).style.display = 'block';
+
+            if(userAns === targetAns) {
+                q5CorrectCount++;
+                document.getElementById(`q5_${i}`).style.borderColor = 'var(--success)';
+            } else {
+                document.getElementById(`q5_${i}`).style.borderColor = 'var(--error)';
+            }
+        }
+        const q5Card = document.getElementById('q5-card');
+        const q5Feedback = document.getElementById('q5-feedback');
+        if (q5CorrectCount === 9) {
+            q5Card.className = "question-card correct-card";
+            q5Feedback.className = "feedback-message text-success";
+            q5Feedback.innerText = "Правильно! Сложнейший блок с фразеологизмами пройден без ошибок.";
+        } else {
+            q5Card.className = "question-card incorrect-card";
+            q5Feedback.className = "feedback-message text-error";
+            q5Feedback.innerText = `Верно оформлено предложений: ${q5CorrectCount} из 9. Напоминаем: устойчивые сочетания (деепричастия-наречия) не обособляются!`;
+        }
+        let q5Percent = Math.round((q5CorrectCount / 9) * 100);
+        reportData.push(`• Задание 5 (фразеологизмы и устойчивые формы): ${q5CorrectCount} из 9 ответов (${q5Percent}%)`);
+        totalCorrectInputs += q5CorrectCount;
+        totalMaxInputs += 9;
+
+        // Вывод красивого блока результатов
+        const resultBox = document.getElementById('result-box');
+        resultBox.style.display = 'block';
+        
+        let totalPercent = Math.round((totalCorrectInputs / totalMaxInputs) * 100);
+
+        resultBox.innerHTML = `
+            <div style="border-bottom: 2px dashed var(--primary); padding-bottom: 15px; margin-bottom: 15px;">
+                <h3 style="margin: 0 0 10px 0; color: var(--primary);">Результаты теста</h3>
+                Общий результат выполнения: <span style="font-size: 24px; color: var(--primary); font-weight: bold;">${totalPercent}%</span><br>
+                Всего верных ответов: <strong>${totalCorrectInputs} из ${totalMaxInputs}</strong>
+            </div>
+            <div style="text-align: left; background: #fff; padding: 20px; border-radius: 6px; border: 1px solid var(--border); font-family: sans-serif; font-size: 15px; color: #333; line-height: 1.5;">
+                <strong style="display:block; margin-bottom: 12px; color: #2c3e50; font-size: 16px;">📋 Сделай скриншот этого окна и отправь своему репетитору. Можешь также зафиксировать те задания, которые хочешь разобрать</strong>
+                <div style="white-space: pre-line; font-family: monospace; background: #f8f9fa; padding: 12px; border-radius: 4px; border: 1px solid #e2e8f0;">
+                Тема: ПЕРЕХОД ДЕЕПРИЧАСТИЙ В НАРЕЧИЯ
+                Общий прогресс: ${totalPercent}% 
+                
+                Детализация по заданиям:
+                ${reportData.join('\n')}
+                </div>
+            </div>
+        `;
+        
+        resultBox.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
