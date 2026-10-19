@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренировочный тест: Задания 16-20</title>
+    <style>
+        :root {
+            --primary: #34495e;
+            --primary-light: #f5f7fa;
+            --success: #2ecc71;
+            --success-light: #e8f8f0;
+            --error: #e74c3c;
+            --error-light: #fdedec;
+            --text: #2c3e50;
+            --border: #dcdde1;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f1f2f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 22px;
+        }
+
+        .variant-section {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .variant-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: var(--primary);
+            padding: 10px 15px;
+            margin: -20px -20px 20px -20px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .question-block {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .question-block:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .question-num {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+        }
+
+        .question-text {
+            font-style: italic;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .sentences-list {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        .sentences-list li {
+            margin-bottom: 8px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .text-input {
+            width: 150px;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: #2980b9;
+        }
+
+        .correct-answer-view {
+            font-size: 14px;
+            color: #27ae60;
+            background: var(--success-light);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: #2c3e50;
+        }
+
+        #result-box {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Тренировочный тест по пунктуации (Задания 16-20)</h1>
+    <form id="quiz-form" onsubmit="event.preventDefault(); checkQuiz();">
+
+        <!-- ВАРИАНТ 1 -->
+        <div class="variant-section">
+            <div class="variant-title">Вариант 1</div>
+            
+            <div class="question-block">
+                <div class="question-num">№16</div>
+                <div class="question-text">Расставьте знаки препинания. Укажите предложения, in которых нужно поставить ОДНУ запятую. Запишите номера этих предложений.</div>
+                <ol class="sentences-list">
+                    <li>Этой зимой было мало снега и трещали жестокие морозы.</li>
+                    <li>В минуты музыки печальной я представляю жёлтый плёс и голос женщины прощальный и шум порывистых берёз.</li>
+                    <li>Он снова увидел спокойную глинистую реку сыпучую гальку сухой белый и жёлтый тростник.</li>
+                    <li>Щедр на слова да скуп на дела.</li>
+                    <li>Природа созидательна по своей сути и эту созидательную деятельность человеку нужно научиться уважать.</li>
+                </ol>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v1_16" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v1_16_ans" style="display:none;">Правильно: 45</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№17</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Юркнув между машинами (1) разведчики очутились в кювете (2) и (3) вынырнув оттуда (4) быстрым шагом стали углубляться в лес.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v1_17" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v1_17_ans" style="display:none;">Правильно: 134</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№18</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Пройдите (1) вы (2) гости (3) по улице старой,<br>По новым домам, по колхозным амбарам.<br>По скотным дворам, по усадьбе пройдёте,<br>Наверно (4) вы (5) песню тогда нам споёте.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v1_18" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v1_18_ans" style="display:none;">Правильно: 234</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№19</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Перед собой я видел счастливого человека (1) заветная мечта (2) которого (3) осуществилась (4) который (5) получил то (6) что хотел (7) который был доволен судьбой и самим собой.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v1_19" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v1_19_ans" style="display:none;">Правильно: 1467</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№20</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Ганин вышел на берег (1) и (2) когда увидел у пристани синего турка на огромной груде апельсинов (3) ощутил пронзительно и ясно (4) как далеко от него тёплая громада родины.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v1_20" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v1_20_ans" style="display:none;">Правильно: 234</div>
+                </div>
+            </div>
+        </div>
+        <!-- ВАРИАНТ 2 -->
+        <div class="variant-section">
+            <div class="variant-title">Вариант 2</div>
+            
+            <div class="question-block">
+                <div class="question-num">№16</div>
+                <div class="question-text">Расставьте знаки препинания. Укажите предложения, в которых нужно поставить одну запятую. Запишите номера этих предложений.</div>
+                <ol class="sentences-list">
+                    <li>Эта деревня располагается в покрытой оврагами и непроходимыми еловыми и сосновыми лесами местности.</li>
+                    <li>Здесь изготавливают и ремонтируют металлическую деревянную оснастку для работы литейных цехов автозавода.</li>
+                    <li>Ветер закручивал листья в осеннюю карусель да закидывал их в окна домов.</li>
+                    <li>Весенней ночи сумрак влажный струями льётся предо мной и что-то шепчет гул протяжный над обновлённою землёй.</li>
+                    <li>Вдалеке шелестели кроны деревьев и слышался тихий едва различимый лай собаки.</li>
+                </ol>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v2_16" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v2_16_ans" style="display:none;">Правильно: 245</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№17</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Свидетель недоговаривал главного (1) останавливаясь (2) на абсолютно неважных (3) подробностях (4) не интересующих (5) следователя.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v2_17" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v2_17_ans" style="display:none;">Правильно: 14</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№18</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Дар напрасный (1) дар случайный (2)<br>Жизнь (3) зачем (4) ты (5) мне дана? <br>Иль зачем судьбою тайной (6)<br>Ты (7) на казнь осуждена?</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v2_18" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v2_18_ans" style="display:none;">Правильно: 123</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№19</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Хотя (1) Леонтьеву очень хотелось поехать в лесничество к Петру Максимовичу (2) он решил до осени (3) пока (4) хотя бы вчерне не окончит книгу (5) никуда не выезжать из Ленинграда.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v2_19" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v2_19_ans" style="display:none;">Правильно: 235</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№20</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Снег засыпал следы путников (1) и стало ясно (2) что (3) если снегопад не прекратится к ночи (4) то обратную дорогу придётся искать с трудом.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v2_20" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v2_20_ans" style="display:none;">Правильно: 124</div>
+                </div>
+            </div>
+        </div>
+        <!-- ВАРИАНТ 3 -->
+        <div class="variant-section">
+            <div class="variant-title">Вариант 3</div>
+            
+            <div class="question-block">
+                <div class="question-num">№16</div>
+                <div class="question-text">Расставьте знаки препинания. Укажите предложения, в которых нужно поставить одну запятую. Запишите номера этих предложений.</div>
+                <ol class="sentences-list">
+                    <li>На даче его ждали длинный тёплый вечер с неспешными разговорами на открытой веранде и чай с неизменным вишнёвым вареньем.</li>
+                    <li>Интеллектуальное и духовное развитие поэтов золотого века базировалось как на идеологии французских просветителей так и на традициях русской литературы XVIII века.</li>
+                    <li>Была ранняя осень и радовали солнечные дни и напоминали о лете яркие клумбы оранжевых бархоток и пёстрых петуний.</li>
+                    <li>Изредка мы устраивали на чердаке раскопки и находили то ящик от масляных красок то сломанный веер то большую книгу с красивыми иллюстрациями.</li>
+                    <li>Дул с моря бриз и месяц чистым рогом стоял за длинной сельской улицей.</li>
+                </ol>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v3_16" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v3_16_ans" style="display:none;">Правильно: 25</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№17</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Пароход уходил всё дальше (1) нагоняя на песчаные берега длинные волны (2) качающие прибрежные кусты лозняка (3) отвечающие шумом (4) на удары пароходных колёс.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v3_17" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v3_17_ans" style="display:none;">Правильно: 123</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№18</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Никнут (1) шелковые травы,<br>Пахнет (2) смолистой сосной.<br>Ой вы (3) луга и дубравы (4),<br>Я одурманен весной.<br>Сыпь ты (5) черёмуха (6) снегом,<br>Пойте вы (7) птахи (8) в лесу.<br>По полю зыбистым бегом<br>Пеной я цвет разнесу.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v3_18" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v3_18_ans" style="display:none;">Правильно: 345678</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№19</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Бедный смотритель не понимал (1) каким образом (2) мог он сам позволить своей Дуне ехать вместе с гусаром (3) как нашло на него (4) это ослепление (5) что (6) тогда было с его разумом.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v3_19" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v3_19_ans" style="display:none;">Правильно: 135</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№20</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Татьяна Петровна долго сидела у стола и думала (1) что (2) если на следующий день приедет с фронта Санин (3) ему будет тяжело встретить в родном доме чужих людей (4) о существовании которых он даже не подозревал.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v3_20" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v3_20_ans" style="display:none;">Правильно: 1234</div>
+                </div>
+            </div>
+        </div>
+        <!-- ВАРИАНТ 4 -->
+        <div class="variant-section">
+            <div class="variant-title">Вариант 4</div>
+            
+            <div class="question-block">
+                <div class="question-num">№16</div>
+                <div class="question-text">Расставьте знаки препинания. Укажите предложения, в которых нужно поставить одну запятую. Запишите номера этих предложений.</div>
+                <ol class="sentences-list">
+                    <li>На красноватый фон обожжённой глины художник наносил грунт рисунок и орнамент и заливал поверхность сосуда лаком.</li>
+                    <li>В лунную ночь развёртывалась перед нами вся ширь с лугами и холмами и было видно далеко окрест.</li>
+                    <li>Но не только к своим родственникам но и ко всем людям автор присматривался с нескрываемым любопытством.</li>
+                    <li>Светлыми и чистыми глазами мы смотрели на мир и всё нам тогда казалось ярким.</li>
+                    <li>Вечером прошёл первый майский дождь и прогремела гроза.</li>
+                </ol>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v4_16" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v4_16_ans" style="display:none;">Правильно: 134</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№17</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Алексей (1) возмущённый несправедливым замечанием (2) быстро вышел из комнаты начальника (3) и (4) ни на кого не глядя (5) направился к выходу.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v4_17" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v4_17_ans" style="display:none;">Правильно: 1245</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№18</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Наедине с тобою (1) брат (2)<br>Хотел бы я побыть:<br>На свете мало (3) говорят (4)<br>Мне остаётся жить!<br>Поедешь скоро ты домой:<br>Смотри ж... Да что? моей судьбой,<br>Сказать (5) по правде (6) очень<br>Никто не озабочен.<br>Отца и мать мою (7) едва ль<br>Застанешь ты в живых...<br>Признаться (8) право (9) было б жаль<br>Мне опечалить их...</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v4_18" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v4_18_ans" style="display:none;">Правильно: 1234689</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№19</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Впереди (1) куда вела дорога (2) было немного посветлее (3) потому что за плотными тучами (4) брезжили отблески короткого декабрьского дня.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v4_19" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v4_19_ans" style="display:none;">Правильно: 123</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№20</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>На далёком западном крае неба (1) исступлённо метались белые молнии (2) и (3) хотя гроза не собиралась двигаться в нашу сторону (4) всё же что-то тревожное было в этом таинственном ожидании природы.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v4_20" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v4_20_ans" style="display:none;">Правильно: 234</div>
+                </div>
+            </div>
+        </div>
+        <!-- ВАРИАНТ 5 -->
+        <div class="variant-section">
+            <div class="variant-title">Вариант 5</div>
+            
+            <div class="question-block">
+                <div class="question-num">№16</div>
+                <div class="question-text">Расставьте знаки препинания. Укажите предложения, в которых нужно поставить одну запятую. Запишите номера этих предложений.</div>
+                <ol class="sentences-list">
+                    <li>Жанр элегии предполагает рассуждения о жизни и смерти воспоминания о былом и грусть о быстротечном счастье.</li>
+                    <li>Ни жизненные перипетии ни привилегированное положение в свете не смогли переделать характер Г. Р. Державина.</li>
+                    <li>Темнеет и последний солнечный луч вскоре ускользнёт из комнаты.</li>
+                    <li>Анастасии Ивановне свойственно было выражать себя не столько in словах сколько in делах и поступках.</li>
+                    <li>Отсюда открывался широкий вид на пойму реки и на огромный старинный собор.</li>
+                </ol>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v5_16" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v5_16_ans" style="display:none;">Правильно: 1234</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№17</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>В. С. Соловьёв известен как философ (1) восставший против материализма и позитивизма (2) и (3) подготовивший своими трудами русскую философию ХХ века (4) продолженную in работах Н. А. Бердяева, Л. И. Шестова, С. Н. Булгакова.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v5_17" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v5_17_ans" style="display:none;">Правильно: 14</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№18</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Низкий дом с голубыми ставнями (1)<br>Не забыть мне тебя никогда, -<br>Слишком были такими недавними<br>Отзвучавшие in сумрак года...<br>Восхищаться (2) уж (3) я не умею<br>И пропасть не хотел бы in глуши,<br>Но (4) наверно (5) навеки имею (6)<br>Нежность (7) грустную русской души.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v5_18" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v5_18_ans" style="display:none;">Правильно: 145</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№19</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Чувство стыда (1) которое (2) испытал я во время разговора с отцом (3) вернулось ко мне с такой силой (4) что (5) мне захотелось встать и выйти (6) чтобы не встретиться с ним взглядом.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v5_19" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v5_19_ans" style="display:none;">Правильно: 1346</div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-num">№20</div>
+                <div class="question-text">Расставьте знаки препинания: укажите все цифры, на месте которых в предложении должны стоять запятые.</div>
+                <p>Попробуйте вспомнить любой свой день минуту за минутой (1) и вы убедитесь (2) что (3) если восстановить весь этот поток времени (4) можно написать целую книгу.</p>
+                <div class="input-group">
+                    <input type="text" class="text-input" id="v5_20" placeholder="Ответ...">
+                    <div class="correct-answer-view" id="v5_20_ans" style="display:none;">Правильно: 1234</div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Проверить тест</button>
+    </form>
+
+    <div id="result-box"></div>
+</div>
+
+<script>
+    function cleanText(text) {
+        if (!text) return '';
+        // Удаляем пробелы, запятые и приводим к нижнему регистру для гибкости ввода
+        let t = text.trim().toLowerCase().replace(/\s+/g, '').replace(/,/g, '');
+        while (t.endsWith('.') || t.endsWith('!') || t.endsWith('?')) {
+            t = t.slice(0, -1).trim();
+        }
+        return t;
+    }
+
+    function checkQuiz() {
+        let totalCorrectInputs = 0;
+        let totalMaxInputs = 25; // 5 вариантов по 5 вопросов
+        let reportData = [];
+
+        // Правильные ответы базы данных
+        const correctAnswers = {
+            v1_16: "45", v1_17: "134", v1_18: "234", v1_19: "1467", v1_20: "234",
+            v2_16: "245", v2_17: "14", v2_18: "123", v2_19: "235", v2_20: "124",
+            v3_16: "25", v3_17: "123", v3_18: "345678", v3_19: "135", v3_20: "1234",
+            v4_16: "134", v4_17: "1245", v4_18: "1234689", v4_19: "123", v4_20: "234",
+            v5_16: "1234", v5_17: "14", v5_18: "145", v5_19: "1346", v5_20: "1234"
+        };
+
+        // Счётчики по каждому варианту для детализации
+        let variantScores = { v1: 0, v2: 0, v3: 0, v4: 0, v5: 0 };
+
+        for (let key in correctAnswers) {
+            let inputEl = document.getElementById(key);
+            let ansEl = document.getElementById(key + "_ans");
+            let userAns = cleanText(inputEl.value);
+            let targetAns = cleanText(correctAnswers[key]);
+
+            ansEl.style.display = 'block'; // Показываем эталон
+
+            if (userAns === targetAns || userAns === targetAns.split('').reverse().join('')) {
+                inputEl.style.borderColor = 'var(--success)';
+                inputEl.style.backgroundColor = 'var(--success-light)';
+                totalCorrectInputs++;
+                
+                // Накапливаем балл в соответствующий вариант
+                let vKey = key.split('_')[0];
+                variantScores[vKey]++;
+            } else {
+                inputEl.style.borderColor = 'var(--error)';
+                inputEl.style.backgroundColor = 'var(--error-light)';
+            }
+        }
+
+        // Собираем отчёт для репетитора
+        for (let i = 1; i <= 5; i++) {
+            let count = variantScores['v' + i];
+            let percent = Math.round((count / 5) * 100);
+            reportData.push(`• Вариант ${i}: ${count} из 5 верных ответов (${percent}%)`);
+        }
+
+        let totalPercent = Math.round((totalCorrectInputs / totalMaxInputs) * 100);
+
+        // Вывод блока результатов
+        const resultBox = document.getElementById('result-box');
+        resultBox.style.display = 'block';
+        
+        resultBox.innerHTML = `
+            <div style="border-bottom: 2px dashed var(--primary); padding-bottom: 15px; margin-bottom: 15px;">
+                <h3 style="margin: 0 0 10px 0; color: var(--primary);">Результаты теста</h3>
+                Общий результат выполнения: <span style="font-size: 24px; color: var(--primary); font-weight: bold;">${totalPercent}%</span><br>
+                Всего верных ответов: <strong>${totalCorrectInputs} из ${totalMaxInputs}</strong>
+            </div>
+            <div style="text-align: left; background: #fff; padding: 20px; border-radius: 6px; border: 1px solid var(--border); font-family: sans-serif; font-size: 15px; color: #333; line-height: 1.5;">
+                <strong style="display:block; margin-bottom: 12px; color: #2c3e50; font-size: 16px;">📋 сделай скриншот этого окна и отправь своему репетитору. можешь заодно зафиксировать те задания, которые хочешь разобрать</strong>
+                <div style="white-space: pre-line; font-family: monospace; background: #f8f9fa; padding: 12px; border-radius: 4px; border: 1px solid #e2e8f0;">
+                Тема: ПУНКТУАЦИЯ (ЗАДАНИЯ 16-20)
+                Общий прогресс: ${totalPercent}% 
+                
+                Детализация по вариантам:
+                ${reportData.join('\n')}
+                </div>
+            </div>
+        `;
+        
+        resultBox.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
